@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sartoretto Verna progetta e realizza studi dentistici su misura. Design d'interni, arredamento e identità visiva per cliniche odontoiatriche d'eccellenza. Oltre 40 anni di esperienza.">
+    <meta name="keywords" content="arredo studio dentistico, arredamento dentistico, progettazione studi dentistici, design clinica odontoiatrica, Sartoretto Verna, interior design dentale, arredamento su misura dentista">
+    <meta name="author" content="Sartoretto Verna S.R.L.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Arredo Studio Dentistico — Sartoretto Verna">
+    <meta property="og:description" content="Progettiamo studi dentistici che trasformano l'esperienza del paziente. Design, arredamento e identità visiva su misura.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.arredostudiodentistico.it">
+    <link rel="canonical" href="https://www.arredostudiodentistico.it">
+    <title>Arredo Studio Dentistico — Sartoretto Verna | Progettazione e Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --black:#050505;
+            --dark:#0e0e0e;
+            --dark-2:#151515;
+            --dark-3:#1c1c1c;
+            --teal:#26988a;
+            --teal-hover:#2eb8a6;
+            --teal-glow:rgba(38,152,138,.12);
+            --teal-glow-strong:rgba(38,152,138,.2);
+            --warm-glow:rgba(200,165,90,.12);
+            --warm-glow-strong:rgba(200,165,90,.18);
+            --surface-teal:#0f1717;
+            --surface-teal-2:#121d1d;
+            --surface-warm:#17130f;
+            --surface-warm-2:#1c1711;
+            --surface-neutral:#111214;
+            --gold:#c8a55a;
+            --white:#fff;
+            --off-white:#f0ede8;
+            --gray-100:#e8e8e8;
+            --gray-300:#aaa;
+            --gray-500:#666;
+            --gray-700:#333;
+            --font-display:'Oswald',sans-serif;
+            --font-serif:'Cormorant Garamond',Georgia,serif;
+            --font-mono:'Space Mono',monospace;
+            --font-body:'Helvetica Neue',Helvetica,Arial,sans-serif;
+            --header-h:80px;
+            --ease:cubic-bezier(.16,1,.3,1);
+            --ease-out:cubic-bezier(.33,1,.68,1);
+        }
+        .cursor-glow{position:fixed;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(38,152,138,.07) 0%,transparent 70%);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .4s}
+        @media(max-width:1024px){.cursor-glow{display:none}}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:var(--font-body);background:var(--dark);color:var(--white);overflow-x:hidden;line-height:1.6}
+        ::selection{background:var(--teal);color:var(--white)}
+        img{display:block;max-width:100%}
+        a{text-decoration:none;color:inherit}
+
+        /* ══════ LOADING SCREEN ══════ */
+        .loader{position:fixed;inset:0;z-index:10000;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s .2s,visibility .6s .2s}
+        .loader.done{opacity:0;visibility:hidden;pointer-events:none}
+        .loader__bar{width:120px;height:1px;background:var(--gray-700);overflow:hidden;border-radius:1px}
+        .loader__fill{width:0;height:100%;background:var(--teal);transition:width 1.8s var(--ease)}
+        .loader.active .loader__fill{width:100%}
+        .loader__text{font-family:var(--font-mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray-500)}
+
+        /* ══════ HEADER ══════ */
+        .header{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);transition:all .5s}
+        .header::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:rgba(255,255,255,.06);transition:opacity .4s}
+        .header.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6)}
+        .header.scrolled::after{opacity:0}
+        .logo{display:flex;align-items:center;gap:14px}
+        .logo img{height:44px;width:auto;filter:brightness(1.1)}
+        .logo__divider{width:1px;height:28px;background:rgba(255,255,255,.15)}
+        .logo__text{font-family:var(--font-display);font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--teal);font-weight:400;line-height:1.5}
+
+        .nav{display:flex;align-items:center;gap:36px}
+        .nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);transition:color .3s;position:relative}
+        .nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--teal);transition:width .4s var(--ease)}
+        .nav a:hover{color:var(--white)}
+        .nav a:hover::after{width:100%}
+
+        .header__right{display:flex;align-items:center;gap:20px}
+        .header__tel{font-family:var(--font-mono);font-size:11px;color:var(--gray-300);display:flex;align-items:center;gap:8px;transition:color .3s}
+        .header__tel:hover{color:var(--teal)}
+        .header__tel svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+        .btn{font-family:var(--font-display);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--white);cursor:pointer;position:relative;overflow:hidden;transition:all .4s var(--ease);display:inline-flex;align-items:center;gap:10px}
+        .btn::before{content:'';position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:-1}
+        .btn:hover{border-color:var(--teal)}
+        .btn:hover::before{transform:scaleX(1)}
+        .btn--solid{background:var(--teal);border-color:var(--teal)}
+        .btn--solid::before{background:var(--teal-hover)}
+        .btn--large{padding:18px 44px;font-size:12px;letter-spacing:3.5px}
+        .btn__arrow{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+        .btn:hover .btn__arrow{transform:translateX(4px)}
+
+        .burger{display:none;background:0;border:0;cursor:pointer;padding:8px;width:40px;height:40px;position:relative}
+        .burger span{display:block;width:22px;height:1.2px;background:var(--white);position:absolute;left:50%;transform:translateX(-50%);transition:all .3s}
+        .burger span:nth-child(1){top:13px}
+        .burger span:nth-child(2){top:20px}
+        .burger span:nth-child(3){top:27px}
+        .burger.active span:nth-child(1){top:20px;transform:translateX(-50%) rotate(45deg)}
+        .burger.active span:nth-child(2){opacity:0}
+        .burger.active span:nth-child(3){top:20px;transform:translateX(-50%) rotate(-45deg)}
+
+        .mob-nav{display:none;position:fixed;inset:0;z-index:999;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+        .mob-nav.open{display:flex}
+        .mob-nav a{font-family:var(--font-display);font-size:32px;font-weight:300;letter-spacing:6px;text-transform:uppercase;color:var(--white);transition:color .3s}
+        .mob-nav a:hover{color:var(--teal)}
+
+        /* ══════ HERO ══════ */
+        .hero{height:100vh;min-height:800px;position:relative;display:flex;overflow:hidden}
+        .hero__left{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(20px,6vw,100px);padding-bottom:clamp(80px,12vh,140px);position:relative;z-index:2}
+        .hero__right{flex:1;position:relative;overflow:hidden}
+        .hero__right img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 12s ease-out;filter:brightness(.85) contrast(1.05)}
+        .hero.in-view .hero__right img{transform:scale(1)}
+        .hero__right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--dark) 0%,transparent 40%)}
+
+        .hero__label{font-family:var(--font-mono);font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--teal);margin-bottom:28px;overflow:hidden}
+        .hero__label span{display:inline-block;transform:translateY(100%);transition:transform .8s var(--ease) .3s}
+        .hero.in-view .hero__label span{transform:translateY(0)}
+
+        .hero__title{font-family:var(--font-display);font-weight:700;font-size:clamp(52px,7.5vw,120px);line-height:.88;text-transform:uppercase;letter-spacing:-2px;margin-bottom:32px}
+        .hero__title .line{display:block;overflow:hidden}
+        .hero__title .line span{display:block;transform:translateY(110%);transition:transform 1s var(--ease)}
+        .hero.in-view .hero__title .line:nth-child(1) span{transition-delay:.15s;transform:translateY(0)}
+        .hero.in-view .hero__title .line:nth-child(2) span{transition-delay:.25s;transform:translateY(0)}
+        .hero.in-view .hero__title .line:nth-child(3) span{transition-delay:.35s;transform:translateY(0)}
+
+        .hero__subtitle{font-family:var(--font-serif);font-size:clamp(18px,2vw,26px);font-weight:300;font-style:italic;color:var(--gray-300);line-height:1.5;max-width:480px;margin-bottom:44px;opacity:0;transform:translateY(20px);transition:all .8s var(--ease) .65s}
+        .hero.in-view .hero__subtitle{opacity:1;transform:translateY(0)}
+
+        .hero__cta{opacity:0;transform:translateY(20px);transition:all .8s var(--ease) .85s}
+        .hero.in-view .hero__cta{opacity:1;transform:translateY(0)}
+
+        .hero__scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:12px}
+        .hero__scroll-text{font-family:var(--font-mono);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gray-500);writing-mode:vertical-lr}
+        .hero__scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
+        @keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
+        /* ══════ MARQUEE ══════ */
+        .marquee{overflow:hidden;padding:20px 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);background:var(--black)}
+        .marquee__track{display:flex;animation:scroll-marquee 30s linear infinite;width:max-content}
+        .marquee__item{font-family:var(--font-display);font-size:14px;font-weight:300;letter-spacing:6px;text-transform:uppercase;color:var(--gray-700);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:40px}
+        .marquee__item::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);opacity:.5}
+        @keyframes scroll-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+        /* ══════ SECTIONS ══════ */
+        .s-pad{padding:clamp(80px,12vw,180px) clamp(20px,6vw,100px)}
+        .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+        .reveal.vis{opacity:1;transform:translateY(0)}
+        .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+        .label{font-family:var(--font-mono);font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--teal);margin-bottom:20px;display:flex;align-items:center;gap:16px}
+        .label::before{content:'';width:30px;height:1px;background:var(--teal)}
+        .heading{font-family:var(--font-display);font-size:clamp(36px,5.5vw,72px);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-1px;margin-bottom:28px}
+        .heading--light{font-weight:300}
+        .subtext{font-size:16px;line-height:1.8;color:var(--gray-500);max-width:560px}
+        .section-shell{position:relative;isolation:isolate;overflow:hidden}
+        .section-shell::before{content:'';position:absolute;inset:auto;pointer-events:none;z-index:0;filter:blur(10px);animation:drift 16s ease-in-out infinite}
+        .section-shell::after{content:'';position:absolute;inset:0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.03);pointer-events:none;z-index:0}
+        .section-shell > *{position:relative;z-index:1}
+        .section-shell--teal::before{top:8%;left:-10%;width:420px;height:420px;background:radial-gradient(circle,rgba(38,152,138,.28),transparent 70%)}
+        .section-shell--warm::before{top:10%;right:-8%;width:420px;height:420px;background:radial-gradient(circle,rgba(200,165,90,.24),transparent 70%)}
+        .section-shell--mix::before{top:12%;left:50%;width:520px;height:520px;background:radial-gradient(circle,rgba(38,152,138,.16),transparent 42%),radial-gradient(circle at 70% 30%,rgba(200,165,90,.18),transparent 38%)}
+        @keyframes drift{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.04)}}
+
+        /* ══════ ABOUT ══════ */
+        .about{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;background:
+            linear-gradient(135deg,rgba(38,152,138,.14),transparent 32%),
+            linear-gradient(180deg,var(--surface-teal),#0c0d0f)}
+        .about__media{position:relative;overflow:hidden}
+        .about__media img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease-out}
+        .about__media:hover img{transform:scale(1.04)}
+        .about__media-badge{position:absolute;bottom:40px;right:40px;background:rgba(5,5,5,.85);backdrop-filter:blur(20px);padding:20px 28px;display:flex;align-items:center;gap:14px}
+        .about__media-badge span{font-family:var(--font-display);font-size:48px;font-weight:200;color:var(--teal);line-height:1}
+        .about__media-badge small{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);line-height:1.5}
+        .about__content{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,100px)}
+        .about__quote{font-family:var(--font-serif);font-size:clamp(20px,2.2vw,30px);font-style:italic;color:var(--off-white);line-height:1.45;margin:32px 0;padding-left:24px;border-left:2px solid var(--teal)}
+        .about__text{font-size:15px;line-height:1.85;color:var(--gray-500);margin-bottom:16px}
+        .about__text strong{color:var(--white);font-weight:500}
+
+        /* ══════ SERVICES ══════ */
+        .services{background:
+            linear-gradient(135deg,rgba(200,165,90,.16),transparent 28%),
+            linear-gradient(180deg,var(--surface-warm),#0c0c0c)}
+        .services__intro{max-width:700px;margin-bottom:80px}
+        .services__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.04)}
+        .svc{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));padding:clamp(36px,4vw,64px);position:relative;transition:background .5s,transform .5s,box-shadow .5s}
+        .svc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+        .svc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(255,255,255,.06),transparent 38%);opacity:0;transition:opacity .5s}
+        .svc:hover{background:linear-gradient(180deg,#181818,#111);transform:translateY(-8px);box-shadow:0 22px 50px rgba(0,0,0,.28)}
+        .svc:hover::after{transform:scaleX(1)}
+        .svc:hover::before{opacity:1}
+        .svc__num{font-family:var(--font-display);font-size:52px;font-weight:200;color:rgba(255,255,255,.3);margin-bottom:24px;transition:color .4s,text-shadow .4s}
+        .svc:hover .svc__num{color:var(--teal)}
+        .svc__title{font-family:var(--font-display);font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:16px}
+        .svc__text{font-size:14px;line-height:1.75;color:var(--gray-100);opacity:.68}
+
+        /* ══════ PROJECTS ══════ */
+        .projects{background:
+            linear-gradient(135deg,rgba(38,152,138,.12),transparent 28%),
+            linear-gradient(180deg,var(--surface-neutral),var(--surface-teal-2) 54%,#0b0d0e 100%)}
+        .projects__header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px}
+        .projects__header .subtext{margin-bottom:0}
+        .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+        .proj{position:relative;overflow:hidden;cursor:pointer;border-radius:24px;transform:translateY(0);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+        .proj__imgs{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:500px}
+        .proj__imgs--single{grid-template-columns:1fr}
+        .proj__imgs img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s}
+        .proj:hover{transform:translateY(-10px);box-shadow:0 28px 60px rgba(0,0,0,.32)}
+        .proj:hover .proj__imgs img{transform:scale(1.04)}
+        .proj__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.94) 0%,rgba(5,5,5,.4) 35%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;transition:opacity .5s}
+        .proj__tag,.proj__desc{opacity:0;transition:opacity .5s,transform .5s var(--ease);transform:translateY(10px)}
+        .proj:hover .proj__tag,.proj:hover .proj__desc{opacity:1;transform:translateY(0)}
+        .proj__tag{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+        .proj__name{font-family:var(--font-display);font-size:clamp(24px,3vw,36px);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+        .proj__desc{font-family:var(--font-serif);font-size:16px;font-style:italic;color:var(--gray-300)}
+
+        /* ══════ HORIZONTAL GALLERY ══════ */
+        .gallery{background:
+            linear-gradient(135deg,rgba(200,165,90,.12),transparent 24%),
+            linear-gradient(180deg,#0b0c0d,var(--surface-warm-2));padding:clamp(40px,6vw,80px) 0;overflow:hidden}
+        .gallery__track{display:flex;gap:3px;animation:gallery-scroll 40s linear infinite}
+        .gallery__track:hover{animation-play-state:paused}
+        .gallery__img{flex-shrink:0;width:350px;height:260px;overflow:hidden;border-radius:18px}
+        .gallery__img img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);transition:filter .5s,transform .5s}
+        .gallery__img:hover img{filter:grayscale(0%);transform:scale(1.05)}
+        @keyframes gallery-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+        /* ══════ PROCESS ══════ */
+        .process{background:
+            linear-gradient(135deg,rgba(200,165,90,.14),transparent 26%),
+            linear-gradient(180deg,var(--surface-warm-2),#0f1112)}
+        .process__header{text-align:center;max-width:650px;margin:0 auto 80px}
+        .process__header .label{justify-content:center}
+        .process__header .subtext{margin:0 auto}
+        .process__steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+        .process__steps::before{content:'';position:absolute;top:48px;left:12%;right:12%;height:1px;background:rgba(255,255,255,.18)}
+        .step{text-align:center;padding:0 20px}
+        .step__circle{width:96px;height:96px;border:1px solid rgba(255,255,255,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;font-family:var(--font-display);font-size:32px;font-weight:300;color:rgba(255,255,255,.78);position:relative;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:0 18px 40px rgba(0,0,0,.28);transition:all .5s var(--ease)}
+        .step:hover .step__circle{border-color:var(--teal);color:var(--teal);transform:translateY(-8px);box-shadow:0 20px 60px var(--teal-glow)}
+        .step__title{font-family:var(--font-display);font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;color:var(--white)}
+        .step__text{font-size:13px;color:var(--gray-100);line-height:1.7;opacity:.82}
+
+        /* ══════ TRUST ══════ */
+        .trust{background:
+            linear-gradient(135deg,rgba(38,152,138,.16),transparent 30%),
+            linear-gradient(180deg,var(--surface-teal-2),#0b0d0d);text-align:center;position:relative;overflow:hidden}
+        .trust::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,var(--teal-glow),transparent 70%);pointer-events:none}
+        .trust__nums{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:64px auto 0;position:relative}
+        .trust__nums::before,.trust__nums::after{content:'';position:absolute;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.06)}
+        .trust__nums::before{left:33.33%}
+        .trust__nums::after{left:66.66%}
+        .stat__num{font-family:var(--font-display);font-size:clamp(56px,7vw,96px);font-weight:700;line-height:1;color:var(--white);text-shadow:0 0 24px rgba(255,255,255,.08)}
+        .stat__num .ct{display:inline}
+        .stat__suf{font-weight:200;color:var(--teal);font-size:.45em}
+        .stat__lab{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-100);margin-top:8px;opacity:.75}
+
+        /* ══════ CTA SECTION ══════ */
+        .video-section{padding:clamp(80px,10vw,140px) clamp(20px,6vw,100px);background:
+            linear-gradient(135deg,rgba(38,152,138,.18),transparent 26%),
+            linear-gradient(180deg,var(--surface-teal),#0c0d0d);position:relative;overflow:hidden}
+        .video-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--teal))}
+        .video-section__layout{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:clamp(36px,6vw,96px)}
+        .video-section__header{text-align:left;max-width:640px}
+        .video-section__header .heading{margin-bottom:18px}
+        .video-section__subtext{font-family:var(--font-serif);font-size:clamp(20px,2.2vw,28px);line-height:1.45;color:var(--gray-300);font-style:italic;max-width:520px}
+        .video-section__meta{margin-top:30px}
+        .video-section__wrap{position:relative;width:min(100%,340px);aspect-ratio:9/16;margin-left:auto;padding:10px;border-radius:32px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
+        .video-section__wrap::before{content:'';position:absolute;inset:10px;border-radius:22px;border:1px solid rgba(255,255,255,.08);pointer-events:none}
+        .video-section__wrap video{display:block;width:100%;height:100%;object-fit:contain;border-radius:22px;background:var(--black)}
+        .video-section__caption{text-align:left;margin-top:0}
+        .video-section__caption-name{font-family:var(--font-display);font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:4px}
+        .video-section__caption-role{font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--gray-300)}
+
+        .cta-section{position:relative;overflow:hidden;padding:clamp(100px,14vw,200px) clamp(20px,6vw,100px);text-align:center}
+        .cta-section__bg{position:absolute;inset:0}
+        .cta-section__bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25) contrast(1.1)}
+        .cta-section__content{position:relative;z-index:2;max-width:700px;margin:0 auto}
+        .cta-section__heading{font-family:var(--font-display);font-size:clamp(36px,5vw,64px);font-weight:700;text-transform:uppercase;letter-spacing:-1px;line-height:.95;margin-bottom:20px}
+        .cta-section__sub{font-family:var(--font-serif);font-size:clamp(16px,1.8vw,22px);font-style:italic;color:var(--gray-300);margin-bottom:40px}
+
+        /* ══════ CONTACT ══════ */
+        .contact{display:grid;grid-template-columns:1fr 1fr;background:
+            linear-gradient(135deg,rgba(200,165,90,.12),transparent 24%),
+            linear-gradient(180deg,var(--surface-warm),#0d0d0d)}
+        .contact__left{padding:clamp(60px,8vw,120px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01))}
+        .contact__info{margin-top:48px}
+        .contact__row{margin-bottom:28px}
+        .contact__row-label{font-family:var(--font-mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-500);margin-bottom:6px}
+        .contact__row-value{font-size:15px;color:var(--gray-300)}
+        .contact__row-value a{color:var(--gray-300);transition:color .3s}
+        .contact__row-value a:hover{color:var(--teal)}
+
+        .contact__right{padding:clamp(60px,8vw,120px);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#171717,#111)}
+        .contact__form{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+        .field{position:relative}
+        .field--full{grid-column:1/-1}
+        .field label{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray-100);margin-bottom:10px;opacity:.92}
+        .field input,.field textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.24);padding:16px 14px;font-family:var(--font-body);font-size:15px;color:var(--white);outline:none;transition:border-color .3s,background .3s,box-shadow .3s;border-radius:10px}
+        .field input:focus,.field textarea:focus{border-color:rgba(38,152,138,.65);background:rgba(255,255,255,.11);box-shadow:0 0 0 4px rgba(38,152,138,.12)}
+        .field input::placeholder,.field textarea::placeholder{color:rgba(232,232,232,.42)}
+        .field textarea{resize:vertical;min-height:100px}
+        .form-msg{display:none;grid-column:1/-1;padding:20px;border:1px solid var(--teal);background:rgba(38,152,138,.08);text-align:center;font-size:14px;color:var(--teal)}
+        .form-msg.show{display:block}
+
+        @media(prefers-reduced-motion:reduce){
+            .section-shell::before,.gallery__track{animation:none}
+            .svc,.proj,.gallery__img img,.step__circle,.about__media img,.hero__right img{transition:none}
+        }
+
+        /* ══════ FOOTER ══════ */
+        .footer{background:
+            linear-gradient(135deg,rgba(38,152,138,.1),transparent 22%),
+            linear-gradient(180deg,#0b0c0c,#060606);padding:clamp(60px,8vw,100px) clamp(20px,6vw,100px) 28px;border-top:1px solid rgba(255,255,255,.05)}
+        .footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:32px;margin-bottom:56px}
+        .footer__col{padding:28px 24px;border:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));min-height:100%}
+        .footer__brand-desc{font-size:13px;line-height:1.8;color:var(--gray-300);opacity:.78;margin-top:20px;max-width:320px}
+        .footer__social{display:flex;gap:10px;margin-top:24px}
+        .footer__social a{width:36px;height:36px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:all .3s}
+        .footer__social a:hover{border-color:var(--teal);background:var(--teal)}
+        .footer__social a svg{width:14px;height:14px;fill:var(--gray-500);transition:fill .3s}
+        .footer__social a:hover svg{fill:var(--white)}
+        .footer__col-title{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;color:var(--white)}
+        .footer__links{list-style:none}
+        .footer__links li{margin-bottom:12px;font-size:14px;line-height:1.6;color:var(--gray-300)}
+        .footer__links a{font-size:14px;line-height:1.6;color:var(--gray-300);transition:color .3s}
+        .footer__links a:hover{color:var(--teal)}
+        .footer__bottom{border-top:1px solid rgba(255,255,255,.04);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+        .footer__copy{font-size:11px;color:var(--gray-700)}
+        .footer__legal{display:flex;gap:20px}
+        .footer__legal a{font-size:11px;color:var(--gray-700);transition:color .3s}
+        .footer__legal a:hover{color:var(--gray-500)}
+
+        /* ══════ RESPONSIVE ══════ */
+        @media(max-width:1024px){
+            .nav{display:none}
+            .burger{display:block}
+            .hero{flex-direction:column}
+            .hero__left{flex:none;padding-top:calc(var(--header-h) + 40px)}
+            .hero__right{position:absolute;inset:0;z-index:0}
+            .hero__right::after{background:linear-gradient(to top,var(--dark) 20%,rgba(14,14,14,.5) 60%,rgba(14,14,14,.3))}
+            .hero__left{z-index:2;justify-content:flex-end}
+            .about{grid-template-columns:1fr}
+            .about__media{min-height:60vh}
+            .services__grid{grid-template-columns:repeat(2,1fr)}
+            .proj-grid{grid-template-columns:1fr}
+            .proj__imgs{height:400px}
+            .process__steps{grid-template-columns:repeat(2,1fr);gap:48px}
+            .process__steps::before{display:none}
+            .video-section__layout{grid-template-columns:1fr;gap:42px}
+            .video-section__header{text-align:center;max-width:none}
+            .video-section__subtext{margin:0 auto}
+            .video-section__meta{margin-top:24px}
+            .video-section__caption{text-align:center}
+            .video-section__wrap{margin:0 auto}
+            .contact{grid-template-columns:1fr}
+            .footer__top{grid-template-columns:1fr 1fr}
+        }
+        @media(max-width:640px){
+            :root{--header-h:64px}
+            .header{padding:0 14px}
+            .logo{gap:10px;min-width:0}
+            .logo img{height:34px}
+            .logo__divider{height:22px}
+            .logo__text{font-size:8px;letter-spacing:2.2px}
+            .header__right{gap:8px}
+            .header__tel{display:none}
+            .header__right .btn{display:none}
+            .burger{width:38px;height:38px}
+            .services__grid{grid-template-columns:1fr}
+            .process__steps{grid-template-columns:1fr}
+            .trust__nums{grid-template-columns:1fr;gap:48px}
+            .trust__nums::before,.trust__nums::after{display:none}
+            .contact__form{grid-template-columns:1fr}
+            .footer__top{grid-template-columns:1fr}
+            .gallery__img{width:280px;height:200px}
+            .proj__imgs{height:300px}
+            .video-section__wrap{width:min(100%,320px)}
+        }
+
+        /* ══════ GRAIN ══════ */
+        .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <div class="loader__bar"><div class="loader__fill"></div></div>
+    <div class="loader__text">Sartoretto Verna</div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <a href="#" class="logo">
+        <img src="https://sartorettoverna.it/wp-content/uploads/2026/01/logo-light.png" alt="Sartoretto Verna" width="160" height="44">
+        <div class="logo__divider"></div>
+        <div class="logo__text">Dental<br>Design</div>
+    </a>
+    <nav class="nav">
+        <a href="#chi-siamo">Chi Siamo</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#progetti">Progetti</a>
+        <a href="#processo">Processo</a>
+        <a href="#contatti">Contatti</a>
+    </nav>
+    <div class="header__right">
+        <a href="tel:+390695581450" class="header__tel">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>06 9558 1450</span>
+        </a>
+        <a href="#contatti" class="btn">Contattaci</a>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<nav class="mob-nav" id="mobNav">
+    <a href="#chi-siamo">Chi Siamo</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#progetti">Progetti</a>
+    <a href="#processo">Processo</a>
+    <a href="#contatti">Contatti</a>
+    <a href="tel:+390695581450" style="color:var(--teal)">06 9558 1450</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero__left">
+        <div class="hero__label"><span>Pharmacy &middot; Business &middot; Dental Design</span></div>
+        <h1 class="hero__title">
+            <span class="line"><span>Arredo</span></span>
+            <span class="line"><span>Studio</span></span>
+            <span class="line"><span>Dentistico</span></span>
+        </h1>
+        <p class="hero__subtitle">Trasformiamo il tuo studio dentistico in un&rsquo;esperienza unica, dove design, identit&agrave; e funzionalit&agrave; si incontrano.</p>
+        <div class="hero__cta">
+            <a href="#contatti" class="btn btn--solid btn--large">
+                Richiedi Consulenza
+                <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="hero__right">
+        <img src="Carpegna/01.jpg" alt="DentalSea Carpegna - Concept reception firmato Sartoretto Verna">
+    </div>
+    <div class="hero__scroll">
+        <div class="hero__scroll-dot"></div>
+        <div class="hero__scroll-text">Scroll</div>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+    <div class="marquee__track">
+        <div class="marquee__item">Interior Design</div>
+        <div class="marquee__item">Arredamento su Misura</div>
+        <div class="marquee__item">Brand Identity</div>
+        <div class="marquee__item">Rendering 3D</div>
+        <div class="marquee__item">Illuminotecnica</div>
+        <div class="marquee__item">Concept Design</div>
+        <div class="marquee__item">Chiavi in Mano</div>
+        <div class="marquee__item">Interior Design</div>
+        <div class="marquee__item">Arredamento su Misura</div>
+        <div class="marquee__item">Brand Identity</div>
+        <div class="marquee__item">Rendering 3D</div>
+        <div class="marquee__item">Illuminotecnica</div>
+        <div class="marquee__item">Concept Design</div>
+        <div class="marquee__item">Chiavi in Mano</div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about section-shell section-shell--teal" id="chi-siamo">
+    <div class="about__media reveal">
+        <img src="Studio Mari/005.jpg" alt="Studio Dentistico Mari - Reception progettata da Sartoretto Verna">
+        <div class="about__media-badge">
+            <span>60<small style="font-size:24px;color:var(--teal)">+</small></span>
+            <small>Anni di<br>Esperienza</small>
+        </div>
+    </div>
+    <div class="about__content">
+        <div class="label reveal">Chi Siamo</div>
+        <h2 class="heading reveal d1">L&rsquo;eccellenza<br>Sartoretto Verna<br>nel dentale</h2>
+        <blockquote class="about__quote reveal d2">&ldquo;Dal 1965, tre generazioni di architetti danno forma a spazi che generano fiducia, benessere e crescita. Oggi portiamo questa visione nel mondo odontoiatrico.&rdquo;</blockquote>
+        <p class="about__text reveal d3">Sartoretto Verna &egrave; leader internazionale nella <strong>progettazione e arredamento di spazi per la salute</strong>. La nostra esperienza maturata in oltre 2.500 progetti in 48 paesi nel settore farmaceutico si estende oggi alla realizzazione di studi dentistici e cliniche odontoiatriche.</p>
+        <p class="about__text reveal d4">Non forniamo attrezzature cliniche: ci occupiamo di ci&ograve; che rende uno studio <strong>unico e riconoscibile</strong> &mdash; il design degli spazi, l&rsquo;arredamento su misura, l&rsquo;identit&agrave; visiva e l&rsquo;esperienza che il paziente vive dal primo istante in cui varca la soglia.</p>
+        <a href="#progetti" class="btn reveal d5" style="margin-top:36px;align-self:flex-start">Scopri i Progetti <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services s-pad section-shell section-shell--warm" id="servizi">
+    <div class="services__intro">
+        <div class="label reveal">Cosa Facciamo</div>
+        <h2 class="heading reveal d1">Design sartoriale<br>per il tuo studio</h2>
+        <p class="subtext reveal d2">Ogni progetto nasce dall&rsquo;ascolto. Progettiamo ambienti che riflettono la tua identit&agrave; professionale e migliorano l&rsquo;esperienza del paziente.</p>
+    </div>
+    <div class="services__grid">
+        <div class="svc reveal"><div class="svc__num">01</div><h3 class="svc__title">Concept &amp; Strategy</h3><p class="svc__text">Analizziamo la tua vision, il target e il posizionamento per definire un concept unico che differenzi il tuo studio sul mercato.</p></div>
+        <div class="svc reveal d1"><div class="svc__num">02</div><h3 class="svc__title">Interior Design</h3><p class="svc__text">Progettiamo ogni ambiente &mdash; reception, sale operative, aree d&rsquo;attesa, spazi bambini &mdash; con layout ottimizzati e rendering 3D fotorealistici.</p></div>
+        <div class="svc reveal d2"><div class="svc__num">03</div><h3 class="svc__title">Arredo su Misura</h3><p class="svc__text">Realizziamo arredi esclusivi con materiali certificati e finiture sartoriali, prodotti nei nostri laboratori con controllo qualit&agrave; totale.</p></div>
+        <div class="svc reveal"><div class="svc__num">04</div><h3 class="svc__title">Brand Identity</h3><p class="svc__text">Creiamo l&rsquo;identit&agrave; visiva del tuo studio: logo, insegne, comunicazione, grafiche ambientali che raccontano chi sei.</p></div>
+        <div class="svc reveal d1"><div class="svc__num">05</div><h3 class="svc__title">Illuminotecnica</h3><p class="svc__text">Progettiamo scenari luminosi che combinano comfort per il paziente, estetica degli ambienti e funzionalit&agrave; per il medico.</p></div>
+        <div class="svc reveal d2"><div class="svc__num">06</div><h3 class="svc__title">Chiavi in Mano</h3><p class="svc__text">Gestiamo l&rsquo;intero progetto dalla consulenza iniziale alla consegna finale, coordinando ogni fase per garantirti zero pensieri.</p></div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects s-pad section-shell section-shell--mix" id="progetti">
+    <div class="projects__header">
+        <div>
+            <div class="label reveal">Progetti &amp; Concept</div>
+            <h2 class="heading reveal d1">I nostri<br>progetti</h2>
+        </div>
+        <p class="subtext reveal d2">Uno studio realizzato e un concept che raccontano il nostro approccio: identita, atmosfera e cura totale del dettaglio.</p>
+    </div>
+    <div class="proj-grid">
+        <div class="proj reveal">
+            <div class="proj__imgs">
+                <img src="Studio Mari/005.jpg" alt="Studio Mari - Reception" loading="lazy">
+                <img src="Studio Mari/007.jpg" alt="Studio Mari - Sala operativa" loading="lazy">
+            </div>
+            <div class="proj__overlay">
+                <div class="proj__tag">Realizzazione &middot; Interior &middot; Arredo</div>
+                <h3 class="proj__name">Studio Mari</h3>
+                <p class="proj__desc">Natura, corten e luce: uno studio che respira eleganza e accoglienza in ogni dettaglio.</p>
+            </div>
+        </div>
+        <div class="proj reveal d1">
+            <div class="proj__imgs">
+                <img src="Carpegna/01.jpg" alt="DentalSea Carpegna - Concept reception" loading="lazy">
+                <img src="Carpegna/05.jpg" alt="DentalSea Carpegna - Concept sala operativa" loading="lazy">
+            </div>
+            <div class="proj__overlay">
+                <div class="proj__tag">Concept &middot; Vision &middot; Design</div>
+                <h3 class="proj__name">DentalSea Carpegna</h3>
+                <p class="proj__desc">Un concept immersivo dove la cura incontra la meraviglia. Una visione progettuale pensata per grandi e piccoli.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery">
+    <div class="gallery__track">
+        <div class="gallery__img"><img src="Studio Mari/001.jpg" alt="Studio Mari - Ingresso" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/003.jpg" alt="Studio Mari - Esterno" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/006.jpg" alt="Studio Mari - Dettaglio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/009.jpg" alt="Studio Mari - Sala" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/004.jpg" alt="Studio Mari - Interni" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/03.jpg" alt="DentalSea - Concept area bambini" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/07.jpg" alt="DentalSea - Concept sala relax" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/09.jpg" alt="DentalSea - Concept dettaglio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/06.jpg" alt="DentalSea - Concept corridoio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/08.jpg" alt="DentalSea - Concept dettaglio ambientale" loading="lazy"></div>
+        <!-- duplicated for seamless scroll -->
+        <div class="gallery__img"><img src="Studio Mari/001.jpg" alt="Studio Mari - Ingresso" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/003.jpg" alt="Studio Mari - Esterno" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/006.jpg" alt="Studio Mari - Dettaglio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/009.jpg" alt="Studio Mari - Sala" loading="lazy"></div>
+        <div class="gallery__img"><img src="Studio Mari/004.jpg" alt="Studio Mari - Interni" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/03.jpg" alt="DentalSea - Concept area bambini" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/07.jpg" alt="DentalSea - Concept sala relax" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/09.jpg" alt="DentalSea - Concept dettaglio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/06.jpg" alt="DentalSea - Concept corridoio" loading="lazy"></div>
+        <div class="gallery__img"><img src="Carpegna/08.jpg" alt="DentalSea - Concept dettaglio ambientale" loading="lazy"></div>
+    </div>
+</div>
+
+<!-- VIDEO TESTIMONIAL -->
+<section class="video-section section-shell section-shell--teal">
+    <div class="video-section__layout">
+        <div class="video-section__header">
+            <div class="label reveal">La Voce dei Clienti</div>
+            <h2 class="heading reveal d1">La Dottoressa Mari<br>racconta la sua esperienza</h2>
+            <p class="video-section__subtext reveal d2">Un racconto autentico di trasformazione: identita, atmosfera e funzionalita pensate per far vivere lo studio in modo diverso.</p>
+            <div class="video-section__meta reveal d3">
+                <div class="video-section__caption">
+                    <div class="video-section__caption-name">Dott.ssa Mari</div>
+                    <div class="video-section__caption-role">Studio Dentistico Mari &mdash; Spoleto</div>
+                </div>
+            </div>
+        </div>
+        <div class="video-section__wrap reveal d4">
+            <video id="videoMari" controls preload="metadata" playsinline webkit-playsinline controlslist="nofullscreen nodownload noremoteplayback" disablepictureinpicture>
+                <source src="https://sv-it.b-cdn.net/Emozione%2C%20storytelling%20ed%20interazione%20per%20il%20restyling%20dello%20studio%20dentistico%20Mari%20a%20Spoleto.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process s-pad section-shell section-shell--warm" id="processo">
+    <div class="process__header">
+        <div class="label reveal">Il Metodo</div>
+        <h2 class="heading reveal d1">Dal concept<br>alla realt&agrave;</h2>
+        <p class="subtext reveal d2">Un percorso strutturato in quattro fasi, con un unico interlocutore dalla prima idea alla consegna delle chiavi.</p>
+    </div>
+    <div class="process__steps">
+        <div class="step reveal"><div class="step__circle">01</div><h3 class="step__title">Ascolto</h3><p class="step__text">Incontriamo il dentista, analizziamo spazi, budget e obiettivi per definire il brief creativo.</p></div>
+        <div class="step reveal d1"><div class="step__circle">02</div><h3 class="step__title">Progetto</h3><p class="step__text">Concept, layout, rendering 3D, scelta materiali e finiture: tutto approvato prima di partire.</p></div>
+        <div class="step reveal d2"><div class="step__circle">03</div><h3 class="step__title">Produzione</h3><p class="step__text">Arredi realizzati su misura nei nostri laboratori con controllo qualit&agrave; certificato.</p></div>
+        <div class="step reveal d3"><div class="step__circle">04</div><h3 class="step__title">Consegna</h3><p class="step__text">Installazione, allestimento e collaudo. Il tuo studio pronto per accogliere i pazienti.</p></div>
+    </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust s-pad section-shell section-shell--mix">
+    <div class="label reveal" style="justify-content:center">I Numeri</div>
+    <h2 class="heading reveal d1" style="text-align:center">Esperienza concreta</h2>
+    <div class="trust__nums">
+        <div class="stat reveal"><div class="stat__num"><span class="ct" data-target="60">0</span><span class="stat__suf">+</span></div><div class="stat__lab">Anni di Esperienza</div></div>
+        <div class="stat reveal d1"><div class="stat__num"><span class="ct" data-target="2500">0</span><span class="stat__suf">+</span></div><div class="stat__lab">Progetti Realizzati</div></div>
+        <div class="stat reveal d2"><div class="stat__num"><span class="ct" data-target="48">0</span><span class="stat__suf">+</span></div><div class="stat__lab">Paesi nel Mondo</div></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-section__bg"><img src="Studio Mari/003.jpg" alt="" loading="lazy"></div>
+    <div class="cta-section__content reveal">
+        <h2 class="cta-section__heading">Pronto a trasformare<br>il tuo studio?</h2>
+        <p class="cta-section__sub">Raccontaci la tua idea. Ti mostreremo come darle forma.</p>
+        <a href="#contatti" class="btn btn--solid btn--large">Prenota una Consulenza <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-shell section-shell--teal" id="contatti">
+    <div class="contact__left">
+        <div class="label reveal">Contatti</div>
+        <h2 class="heading reveal d1">Parliamo del<br>tuo progetto</h2>
+        <p class="subtext reveal d2">Contattaci per una consulenza gratuita e senza impegno. Ti ricontatteremo entro 24 ore.</p>
+        <div class="contact__info">
+            <div class="contact__row reveal d3">
+                <div class="contact__row-label">Sede</div>
+                <div class="contact__row-value">Via Trionfale 13592<br>00135 Roma RM, Italia</div>
+            </div>
+            <div class="contact__row reveal d4">
+                <div class="contact__row-label">Telefono</div>
+                <div class="contact__row-value"><a href="tel:+390695581450">+39 06 9558 1450</a></div>
+            </div>
+            <div class="contact__row reveal d5">
+                <div class="contact__row-label">WhatsApp</div>
+                <div class="contact__row-value"><a href="https://wa.me/393499084559" target="_blank" rel="noopener">349 908 4559</a></div>
+            </div>
+            <div class="contact__row reveal d5">
+                <div class="contact__row-label">Email</div>
+                <div class="contact__row-value"><a href="mailto:info@sartorettoverna.it">info@sartorettoverna.it</a></div>
+            </div>
+            <div class="contact__row reveal d5">
+                <div class="contact__row-label">Sito Corporate</div>
+                <div class="contact__row-value"><a href="https://www.sartorettoverna.it" target="_blank" rel="noopener">www.sartorettoverna.it</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="contact__right">
+        <form class="contact__form" id="contactForm" novalidate>
+            <div class="field reveal"><label for="nome">Nome *</label><input type="text" id="nome" name="nome" placeholder="Il tuo nome" required></div>
+            <div class="field reveal d1"><label for="cognome">Cognome *</label><input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required></div>
+            <div class="field reveal d1"><label for="citta">Citt&agrave;</label><input type="text" id="citta" name="citta" placeholder="La tua citt&agrave;"></div>
+            <div class="field reveal d2"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="La tua email" required></div>
+            <div class="field reveal d2"><label for="telefono">Telefono</label><input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero"></div>
+            <div class="field field--full reveal d3"><label for="messaggio">Messaggio</label><textarea id="messaggio" name="messaggio" placeholder="Descrivi il tuo progetto, dimensioni dello studio, tempistiche..."></textarea></div>
+            <div class="field reveal d4"><button type="submit" class="btn btn--solid" id="contactSubmit">Invia Richiesta <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+            <div class="form-msg" id="formMsg">Grazie! La tua richiesta e stata inviata correttamente.</div>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__top">
+        <div class="footer__col">
+            <a href="#" class="logo">
+                <img src="https://sartorettoverna.it/wp-content/uploads/2026/01/logo-light.png" alt="Sartoretto Verna" width="140" height="38">
+            </a>
+            <p class="footer__brand-desc">Leader internazionale nella progettazione e arredamento di spazi per la salute. Farmacie, studi dentistici e ambienti wellness in oltre 48 paesi.</p>
+            <div class="footer__social">
+                <a href="https://www.facebook.com/sartorettoverna" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                <a href="https://www.instagram.com/sartorettoverna" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                <a href="https://www.linkedin.com/company/sartorettoverna" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+                <a href="https://wa.me/393499084559" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__col-title">Servizi</h4>
+            <ul class="footer__links">
+                <li><a href="#servizi">Concept &amp; Strategy</a></li>
+                <li><a href="#servizi">Interior Design</a></li>
+                <li><a href="#servizi">Arredo su Misura</a></li>
+                <li><a href="#servizi">Brand Identity</a></li>
+                <li><a href="#servizi">Illuminotecnica</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__col-title">Azienda</h4>
+            <ul class="footer__links">
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#progetti">Progetti</a></li>
+                <li><a href="#processo">Processo</a></li>
+                <li><a href="https://www.sartorettoverna.it" target="_blank" rel="noopener">Sartoretto Verna</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4 class="footer__col-title">Contatti</h4>
+            <ul class="footer__links">
+                <li><a href="tel:+390695581450">+39 06 9558 1450</a></li>
+                <li><a href="mailto:info@sartorettoverna.it">info@sartorettoverna.it</a></li>
+                <li><a href="https://wa.me/393499084559" target="_blank" rel="noopener">349 908 4559</a></li>
+                <li>Via Trionfale 13592</li>
+                <li>00135 Roma RM</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2026 Sartoretto Verna S.R.L. &mdash; P.IVA 07291841000 &mdash; Tutti i diritti riservati</div>
+        <div class="footer__legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function(){
+    'use strict';
+
+    // LOADER
+    var loader=document.getElementById('loader');
+    requestAnimationFrame(function(){loader.classList.add('active')});
+    window.addEventListener('load',function(){
+        setTimeout(function(){loader.classList.add('done');document.querySelector('.hero').classList.add('in-view')},1600);
+    });
+
+    // HEADER
+    var header=document.getElementById('header');
+    window.addEventListener('scroll',function(){header.classList.toggle('scrolled',scrollY>60)},{passive:true});
+
+    // BURGER
+    var burger=document.getElementById('burger'),mob=document.getElementById('mobNav');
+    burger.addEventListener('click',function(){
+        burger.classList.toggle('active');mob.classList.toggle('open');
+        document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+    });
+    mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('active');mob.classList.remove('open');document.body.style.overflow=''})});
+
+    // REVEAL
+    var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+    // COUNTERS
+    var cObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
+        var el=e.target,target=+el.dataset.target,dur=2200,start=null;
+        function ease(t){return 1-Math.pow(1-t,4)}
+        function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=Math.floor(ease(p)*target).toLocaleString('it-IT');if(p<1)requestAnimationFrame(step);else el.textContent=target.toLocaleString('it-IT')}
+        requestAnimationFrame(step);cObs.unobserve(el);
+    }})},{threshold:.5});
+    document.querySelectorAll('.ct').forEach(function(c){cObs.observe(c)});
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click',function(e){
+            var t=document.querySelector(this.getAttribute('href'));
+            if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'})}
+        });
+    });
+
+    // FORM
+    document.getElementById('contactForm').addEventListener('submit',function(e){
+        e.preventDefault();
+        var form=this,
+            n=document.getElementById('nome').value.trim(),
+            c=document.getElementById('cognome').value.trim(),
+            em=document.getElementById('email').value.trim(),
+            msg=document.getElementById('formMsg'),
+            btn=document.getElementById('contactSubmit');
+        if(!n||!c||!em){alert('Compila i campi obbligatori: Nome, Cognome, Email');return}
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('Inserisci un email valida.');return}
+
+        var fd=new FormData(form);
+        fd.append('lead_source','LP arredostudiodentistico.it');
+        fd.append('studio_riferimento','Studio Dentistico Mari');
+        fd.append('page_url',window.location.href);
+
+        btn.disabled=true;
+        btn.style.opacity='.7';
+        btn.style.pointerEvents='none';
+
+        fetch('https://hooks.zapier.com/hooks/catch/1977593/o7v4ls8/',{
+            method:'POST',
+            body:new URLSearchParams(fd)
+        }).then(function(res){
+            if(!res.ok)throw new Error('Webhook non disponibile');
+            msg.textContent='Grazie! La tua richiesta e stata inviata correttamente.';
+            msg.classList.add('show');
+            form.reset();
+        }).catch(function(){
+            msg.textContent='Invio non riuscito. Riprova tra poco oppure contattaci direttamente.';
+            msg.classList.add('show');
+        }).finally(function(){
+            btn.disabled=false;
+            btn.style.opacity='';
+            btn.style.pointerEvents='';
+            setTimeout(function(){msg.classList.remove('show')},5000);
+        });
+    });
+
+    // CURSOR GLOW
+    var glow=document.getElementById('cursorGlow');
+    if(window.innerWidth>1024){
+        document.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+    }
+
+    // PREMIUM TILT
+    if(window.innerWidth>1024&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.querySelectorAll('.proj,.video-section__wrap').forEach(function(card){
+            card.addEventListener('mousemove',function(e){
+                var r=card.getBoundingClientRect(),
+                    x=(e.clientX-r.left)/r.width,
+                    y=(e.clientY-r.top)/r.height,
+                    rx=(.5-y)*8,
+                    ry=(x-.5)*10,
+                    lift=card.classList.contains('proj')?-10:-6;
+                card.style.transform='perspective(1200px) translateY('+lift+'px) rotateX('+rx+'deg) rotateY('+ry+'deg)';
+            });
+            card.addEventListener('mouseleave',function(){card.style.transform='';});
+        });
+    }
+
+    // PARALLAX HERO
+    var heroImg=document.querySelector('.hero__right img');
+    window.addEventListener('scroll',function(){
+        if(scrollY<innerHeight)heroImg.style.transform='scale('+(1+scrollY*.0003)+') translateY('+(scrollY*.15)+'px)';
+    },{passive:true});
+
+})();
+</script>
+</body>
+</html>
