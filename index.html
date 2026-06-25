@@ -206,8 +206,8 @@
         .projects{background:
             linear-gradient(135deg,rgba(38,152,138,.12),transparent 28%),
             linear-gradient(180deg,var(--surface-neutral),var(--surface-teal-2) 54%,#0b0d0e 100%)}
-        .projects__header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px}
-        .projects__header .subtext{margin-bottom:0}
+        .projects__header{display:flex;flex-direction:column;align-items:flex-start;max-width:760px;margin-bottom:64px;gap:18px}
+        .projects__header .subtext{margin-bottom:0;max-width:620px}
         .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
         .proj{position:relative;overflow:hidden;cursor:pointer;border-radius:24px;transform:translateY(0);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
         .proj__imgs{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:500px}
@@ -221,6 +221,30 @@
         .proj__tag{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
         .proj__name{font-family:var(--font-display);font-size:clamp(24px,3vw,36px);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
         .proj__desc{font-family:var(--font-serif);font-size:16px;font-style:italic;color:var(--gray-300)}
+        .project-modal{position:fixed;inset:0;z-index:10020;display:flex;align-items:center;justify-content:center;padding:clamp(16px,3vw,32px);background:rgba(4,6,7,.82);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease}
+        .project-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+        .project-modal__dialog{width:min(1240px,100%);max-height:calc(100vh - 40px);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);background:linear-gradient(180deg,rgba(18,21,22,.98),rgba(10,12,12,.98));border:1px solid rgba(255,255,255,.08);border-radius:28px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.45)}
+        .project-modal__stage{position:relative;display:flex;align-items:center;justify-content:center;padding:clamp(20px,2.8vw,34px);background:radial-gradient(circle at top left,rgba(38,152,138,.12),transparent 34%),linear-gradient(180deg,#0d1112,#090a0b)}
+        .project-modal__image-wrap{width:100%;height:100%;min-height:420px;display:flex;align-items:center;justify-content:center;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.03)}
+        .project-modal__image{max-width:100%;max-height:72vh;object-fit:contain;display:block}
+        .project-modal__nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(8,10,10,.66);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
+        .project-modal__nav:hover{background:rgba(38,152,138,.22);border-color:rgba(38,152,138,.45);box-shadow:0 0 0 8px rgba(38,152,138,.08)}
+        .project-modal__nav--prev{left:26px}
+        .project-modal__nav--next{right:26px}
+        .project-modal__nav svg,.project-modal__close svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+        .project-modal__panel{display:flex;flex-direction:column;padding:clamp(24px,2.6vw,32px);border-left:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01))}
+        .project-modal__top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px}
+        .project-modal__eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+        .project-modal__title{font-family:var(--font-display);font-size:clamp(28px,3vw,42px);font-weight:600;letter-spacing:1px;text-transform:uppercase;line-height:.96}
+        .project-modal__text{font-size:15px;line-height:1.8;color:var(--gray-300);margin-bottom:18px}
+        .project-modal__counter{font-family:var(--font-mono);font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:var(--gray-500);margin-bottom:22px}
+        .project-modal__close{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
+        .project-modal__close:hover{border-color:rgba(38,152,138,.5);background:rgba(38,152,138,.12)}
+        .project-modal__thumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;overflow:auto;padding-right:4px}
+        .project-modal__thumb{border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.02);cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s}
+        .project-modal__thumb:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
+        .project-modal__thumb.active{border-color:rgba(38,152,138,.7);box-shadow:0 0 0 1px rgba(38,152,138,.4)}
+        .project-modal__thumb img{display:block;width:100%;height:108px;object-fit:cover}
 
         /* ══════ HORIZONTAL GALLERY ══════ */
         .gallery{background:
@@ -362,6 +386,9 @@
             .video-section__wrap{margin:0 auto}
             .contact{grid-template-columns:1fr}
             .footer__top{grid-template-columns:1fr 1fr}
+            .project-modal__dialog{grid-template-columns:1fr}
+            .project-modal__panel{border-left:0;border-top:1px solid rgba(255,255,255,.06)}
+            .project-modal__image{max-height:58vh}
         }
         @media(max-width:640px){
             :root{--header-h:64px}
@@ -383,7 +410,68 @@
             .gallery__img{width:280px;height:200px}
             .proj__imgs{height:300px}
             .video-section__wrap{width:min(100%,320px)}
+            .project-modal{padding:10px}
+            .project-modal__dialog{max-height:calc(100vh - 20px);border-radius:22px}
+            .project-modal__stage{padding:56px 14px 18px}
+            .project-modal__image-wrap{min-height:280px}
+            .project-modal__image{max-height:42vh}
+            .project-modal__nav{width:44px;height:44px}
+            .project-modal__nav--prev{left:12px}
+            .project-modal__nav--next{right:12px}
+            .project-modal__panel{padding:18px 14px 16px}
+            .project-modal__close{position:absolute;top:14px;right:14px;width:42px;height:42px;background:rgba(8,10,10,.72)}
+            .project-modal__thumbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+            .project-modal__thumb img{height:82px}
         }
+
+        /* ══════ COOKIE BANNER ══════ */
+        .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:10050;padding:16px;transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+        .cookie-banner.show{transform:translateY(0);pointer-events:auto}
+        .cookie-banner__inner{max-width:960px;margin:0 auto;background:linear-gradient(180deg,rgba(18,21,22,.98),rgba(10,12,12,.98));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:clamp(20px,3vw,28px);box-shadow:0 -20px 60px rgba(0,0,0,.5);backdrop-filter:blur(20px);display:flex;align-items:center;gap:20px}
+        .cookie-banner__icon{width:44px;height:44px;border-radius:12px;background:rgba(38,152,138,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .cookie-banner__icon svg{width:22px;height:22px;fill:var(--teal)}
+        .cookie-banner__text{flex:1;font-size:13px;line-height:1.7;color:var(--gray-300)}
+        .cookie-banner__text a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;transition:color .3s}
+        .cookie-banner__text a:hover{color:var(--teal-hover)}
+        .cookie-banner__actions{display:flex;gap:10px;flex-shrink:0}
+        .cookie-banner__btn{padding:12px 24px;border-radius:10px;font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;border:none}
+        .cookie-banner__btn--accept{background:var(--teal);color:var(--white)}
+        .cookie-banner__btn--accept:hover{background:var(--teal-hover)}
+        .cookie-banner__btn--necessary{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--gray-300)}
+        .cookie-banner__btn--necessary:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
+        .cookie-banner__close{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;background:transparent;color:var(--gray-500);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .3s}
+        .cookie-banner__close:hover{color:var(--white)}
+        .cookie-banner__close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+        @media(max-width:640px){
+            .cookie-banner__inner{flex-direction:column;align-items:stretch;gap:16px}
+            .cookie-banner__icon{display:none}
+            .cookie-banner__actions{flex-direction:column}
+        }
+
+        /* ══════ PRIVACY / COOKIE POLICY MODAL ══════ */
+        .policy-modal{position:fixed;inset:0;z-index:10060;display:flex;align-items:center;justify-content:center;padding:clamp(16px,3vw,40px);background:rgba(4,6,7,.88);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease}
+        .policy-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+        .policy-modal__dialog{width:min(860px,100%);max-height:calc(100vh - 80px);background:linear-gradient(180deg,rgba(18,21,22,.99),rgba(10,12,12,.99));border:1px solid rgba(255,255,255,.08);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);display:flex;flex-direction:column}
+        .policy-modal__header{display:flex;align-items:center;justify-content:space-between;padding:clamp(20px,3vw,32px);border-bottom:1px solid rgba(255,255,255,.06)}
+        .policy-modal__title{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+        .policy-modal__close{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
+        .policy-modal__close:hover{border-color:rgba(38,152,138,.5);background:rgba(38,152,138,.12)}
+        .policy-modal__close svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+        .policy-modal__body{padding:clamp(24px,4vw,40px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+        .policy-modal__body h2{font-family:var(--font-display);font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin:32px 0 12px}
+        .policy-modal__body h2:first-child{margin-top:0}
+        .policy-modal__body p{font-size:14px;line-height:1.8;color:var(--gray-300);margin-bottom:14px}
+        .policy-modal__body ul{margin:0 0 14px 20px;padding:0}
+        .policy-modal__body li{font-size:14px;line-height:1.8;color:var(--gray-300);margin-bottom:6px}
+        .policy-modal__body strong{color:var(--white)}
+        .policy-modal__body .policy-date{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;color:var(--gray-500);text-transform:uppercase;margin-top:32px}
+
+        /* ══════ PRIVACY CHECKBOX ══════ */
+        .field--privacy{display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+        .field--privacy input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--teal);cursor:pointer;flex-shrink:0}
+        .field--privacy label{cursor:pointer;font-size:12px!important;line-height:1.7!important;color:var(--gray-300)!important;letter-spacing:.5px!important;text-transform:none!important}
+        .field--privacy label a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;transition:color .3s}
+        .field--privacy label a:hover{color:var(--teal-hover)}
 
         /* ══════ GRAIN ══════ */
         .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
@@ -526,7 +614,7 @@
         <p class="subtext reveal d2">Uno studio realizzato e un concept che raccontano il nostro approccio: identita, atmosfera e cura totale del dettaglio.</p>
     </div>
     <div class="proj-grid">
-        <div class="proj reveal">
+        <div class="proj reveal" data-project="studio-mari" role="button" tabindex="0" aria-label="Apri la gallery del progetto Studio Mari">
             <div class="proj__imgs">
                 <img src="Studio Mari/005.jpg" alt="Studio Mari - Reception" loading="lazy">
                 <img src="Studio Mari/007.jpg" alt="Studio Mari - Sala operativa" loading="lazy">
@@ -537,7 +625,7 @@
                 <p class="proj__desc">Natura, corten e luce: uno studio che respira eleganza e accoglienza in ogni dettaglio.</p>
             </div>
         </div>
-        <div class="proj reveal d1">
+        <div class="proj reveal d1" data-project="dentalsea-carpegna" role="button" tabindex="0" aria-label="Apri la gallery del concept DentalSea Carpegna">
             <div class="proj__imgs">
                 <img src="Carpegna/01.jpg" alt="DentalSea Carpegna - Concept reception" loading="lazy">
                 <img src="Carpegna/05.jpg" alt="DentalSea Carpegna - Concept sala operativa" loading="lazy">
@@ -550,6 +638,36 @@
         </div>
     </div>
 </section>
+
+<div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+        <div class="project-modal__stage">
+            <button class="project-modal__nav project-modal__nav--prev" type="button" id="projectModalPrev" aria-label="Immagine precedente">
+                <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="project-modal__image-wrap">
+                <img class="project-modal__image" id="projectModalImage" src="" alt="">
+            </div>
+            <button class="project-modal__nav project-modal__nav--next" type="button" id="projectModalNext" aria-label="Immagine successiva">
+                <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+        <aside class="project-modal__panel">
+            <div class="project-modal__top">
+                <div>
+                    <div class="project-modal__eyebrow" id="projectModalEyebrow">Progetto</div>
+                    <h3 class="project-modal__title" id="projectModalTitle"></h3>
+                </div>
+                <button class="project-modal__close" type="button" id="projectModalClose" aria-label="Chiudi popup">
+                    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <p class="project-modal__text" id="projectModalText"></p>
+            <div class="project-modal__counter" id="projectModalCounter"></div>
+            <div class="project-modal__thumbs" id="projectModalThumbs"></div>
+        </aside>
+    </div>
+</div>
 
 <!-- GALLERY -->
 <div class="gallery">
@@ -673,7 +791,11 @@
             <div class="field reveal d2"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="La tua email" required></div>
             <div class="field reveal d2"><label for="telefono">Telefono</label><input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero"></div>
             <div class="field field--full reveal d3"><label for="messaggio">Messaggio</label><textarea id="messaggio" name="messaggio" placeholder="Descrivi il tuo progetto, dimensioni dello studio, tempistiche..."></textarea></div>
-            <div class="field reveal d4"><button type="submit" class="btn btn--solid" id="contactSubmit">Invia Richiesta <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+            <div class="field field--full field--privacy reveal d4">
+                <input type="checkbox" id="privacy" name="privacy">
+                <label for="privacy">Ho letto e accetto la <a href="#" onclick="event.preventDefault();event.stopPropagation();openPolicyModal('privacy')">Privacy Policy</a> e la <a href="#" onclick="event.preventDefault();event.stopPropagation();openPolicyModal('cookie')">Cookie Policy</a> e acconsento al trattamento dei miei dati personali per ricevere la consulenza richiesta. *</label>
+            </div>
+            <div class="field reveal d5"><button type="submit" class="btn btn--solid" id="contactSubmit">Invia Richiesta <svg class="btn__arrow" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
             <div class="form-msg" id="formMsg">Grazie! La tua richiesta e stata inviata correttamente.</div>
         </form>
     </div>
@@ -727,8 +849,8 @@
     <div class="footer__bottom">
         <div class="footer__copy">&copy; 2026 Sartoretto Verna S.R.L. &mdash; P.IVA 07291841000 &mdash; Tutti i diritti riservati</div>
         <div class="footer__legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Cookie Policy</a>
+            <a href="#" onclick="event.preventDefault();openPolicyModal('privacy')">Privacy Policy</a>
+            <a href="#" onclick="event.preventDefault();openPolicyModal('cookie')">Cookie Policy</a>
         </div>
     </div>
 </footer>
@@ -777,6 +899,138 @@
         });
     });
 
+    // PROJECT MODAL
+    var projectsData={
+        'studio-mari':{
+            eyebrow:'Realizzazione · Interior · Arredo',
+            title:'Studio Mari',
+            text:'Un progetto realizzato che racconta materia, luce e accoglienza. Aprendo la gallery puoi scorrere tutti gli ambienti dello studio.',
+            images:[
+                {src:'Studio Mari/001.jpg',alt:'Studio Mari - Ingresso'},
+                {src:'Studio Mari/002.jpg',alt:'Studio Mari - Reception'},
+                {src:'Studio Mari/003.jpg',alt:'Studio Mari - Esterno'},
+                {src:'Studio Mari/004.jpg',alt:'Studio Mari - Interni'},
+                {src:'Studio Mari/005.jpg',alt:'Studio Mari - Reception progettata'},
+                {src:'Studio Mari/006.jpg',alt:'Studio Mari - Dettaglio materico'},
+                {src:'Studio Mari/007.jpg',alt:'Studio Mari - Sala operativa'},
+                {src:'Studio Mari/008.jpg',alt:'Studio Mari - Ambiente clinico'},
+                {src:'Studio Mari/009.jpg',alt:'Studio Mari - Vista sala'}
+            ]
+        },
+        'dentalsea-carpegna':{
+            eyebrow:'Concept · Vision · Design',
+            title:'DentalSea Carpegna',
+            text:'Un concept immersivo, non una realizzazione eseguita. La gallery raccoglie tutte le immagini del percorso progettuale e dell’atmosfera pensata per il brand.',
+            images:[
+                {src:'Carpegna/01.jpg',alt:'DentalSea Carpegna - Concept reception'},
+                {src:'Carpegna/01BIS.jpg',alt:'DentalSea Carpegna - Concept reception variante'},
+                {src:'Carpegna/02.jpg',alt:'DentalSea Carpegna - Concept ingresso'},
+                {src:'Carpegna/03.jpg',alt:'DentalSea Carpegna - Concept area bambini'},
+                {src:'Carpegna/04.jpg',alt:'DentalSea Carpegna - Concept percorso interno'},
+                {src:'Carpegna/05.jpg',alt:'DentalSea Carpegna - Concept sala operativa'},
+                {src:'Carpegna/06.jpg',alt:'DentalSea Carpegna - Concept corridoio'},
+                {src:'Carpegna/06 BIS.jpg',alt:'DentalSea Carpegna - Concept corridoio variante'},
+                {src:'Carpegna/07.jpg',alt:'DentalSea Carpegna - Concept sala relax'},
+                {src:'Carpegna/08.jpg',alt:'DentalSea Carpegna - Concept dettaglio ambientale'},
+                {src:'Carpegna/08BIS.jpg',alt:'DentalSea Carpegna - Concept dettaglio ambientale variante'},
+                {src:'Carpegna/09.jpg',alt:'DentalSea Carpegna - Concept dettaglio'},
+                {src:'Carpegna/10.jpg',alt:'DentalSea Carpegna - Concept area clinica'},
+                {src:'Carpegna/11.jpg',alt:'DentalSea Carpegna - Concept vista finale'}
+            ]
+        }
+    };
+    var modal=document.getElementById('projectModal'),
+        modalImage=document.getElementById('projectModalImage'),
+        modalTitle=document.getElementById('projectModalTitle'),
+        modalEyebrow=document.getElementById('projectModalEyebrow'),
+        modalText=document.getElementById('projectModalText'),
+        modalCounter=document.getElementById('projectModalCounter'),
+        modalThumbs=document.getElementById('projectModalThumbs'),
+        modalClose=document.getElementById('projectModalClose'),
+        modalPrev=document.getElementById('projectModalPrev'),
+        modalNext=document.getElementById('projectModalNext'),
+        activeProject=null,
+        activeIndex=0,
+        lastFocusedCard=null;
+    projectsData['studio-mari'].eyebrow='Realizzazione - Interior - Arredo';
+    projectsData['dentalsea-carpegna'].eyebrow='Concept - Vision - Design';
+    projectsData['dentalsea-carpegna'].text='Un concept immersivo, non una realizzazione eseguita. La gallery raccoglie tutte le immagini del percorso progettuale e dell\'atmosfera pensata per il brand.';
+
+    function renderProjectImage(index){
+        if(!activeProject)return;
+        activeIndex=(index+activeProject.images.length)%activeProject.images.length;
+        var item=activeProject.images[activeIndex];
+        modalImage.src=item.src;
+        modalImage.alt=item.alt;
+        modalCounter.textContent=('0'+(activeIndex+1)).slice(-2)+' / '+('0'+activeProject.images.length).slice(-2);
+        modalThumbs.querySelectorAll('.project-modal__thumb').forEach(function(btn,thumbIndex){
+            btn.classList.toggle('active',thumbIndex===activeIndex);
+            btn.setAttribute('aria-current',thumbIndex===activeIndex?'true':'false');
+        });
+    }
+
+    function openProjectModal(projectKey){
+        var project=projectsData[projectKey];
+        if(!project)return;
+        activeProject=project;
+        activeIndex=0;
+        modalEyebrow.textContent=project.eyebrow;
+        modalTitle.textContent=project.title;
+        modalText.textContent=project.text;
+        modalThumbs.innerHTML='';
+        project.images.forEach(function(image,index){
+            var thumb=document.createElement('button');
+            thumb.type='button';
+            thumb.className='project-modal__thumb';
+            thumb.setAttribute('aria-label','Apri immagine '+(index+1));
+            thumb.innerHTML='<img src="'+image.src+'" alt="'+image.alt+'">';
+            thumb.addEventListener('click',function(){renderProjectImage(index)});
+            modalThumbs.appendChild(thumb);
+        });
+        renderProjectImage(0);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        modalClose.focus();
+    }
+
+    function closeProjectModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+        modalImage.src='';
+        modalThumbs.innerHTML='';
+        activeProject=null;
+        if(lastFocusedCard)lastFocusedCard.focus();
+    }
+
+    document.querySelectorAll('.proj[data-project]').forEach(function(card){
+        card.addEventListener('click',function(){
+            lastFocusedCard=card;
+            openProjectModal(card.dataset.project);
+        });
+        card.addEventListener('keydown',function(e){
+            if(e.key==='Enter'||e.key===' '){
+                e.preventDefault();
+                lastFocusedCard=card;
+                openProjectModal(card.dataset.project);
+            }
+        });
+    });
+
+    modalPrev.addEventListener('click',function(){if(activeProject)renderProjectImage(activeIndex-1)});
+    modalNext.addEventListener('click',function(){if(activeProject)renderProjectImage(activeIndex+1)});
+    modalClose.addEventListener('click',closeProjectModal);
+    modal.addEventListener('click',function(e){
+        if(e.target===modal)closeProjectModal();
+    });
+    document.addEventListener('keydown',function(e){
+        if(!modal.classList.contains('open'))return;
+        if(e.key==='Escape')closeProjectModal();
+        if(e.key==='ArrowLeft')renderProjectImage(activeIndex-1);
+        if(e.key==='ArrowRight')renderProjectImage(activeIndex+1);
+    });
+
     // FORM
     document.getElementById('contactForm').addEventListener('submit',function(e){
         e.preventDefault();
@@ -788,6 +1042,7 @@
             btn=document.getElementById('contactSubmit');
         if(!n||!c||!em){alert('Compila i campi obbligatori: Nome, Cognome, Email');return}
         if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('Inserisci un email valida.');return}
+        if(!document.getElementById('privacy').checked){alert('Devi accettare la Privacy Policy per procedere.');return}
 
         var fd=new FormData(form);
         fd.append('lead_source','LP arredostudiodentistico.it');
@@ -845,6 +1100,151 @@
         if(scrollY<innerHeight)heroImg.style.transform='scale('+(1+scrollY*.0003)+') translateY('+(scrollY*.15)+'px)';
     },{passive:true});
 
+})();
+</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner__inner" style="position:relative">
+        <div class="cookie-banner__icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="1.5"/><circle cx="14" cy="8" r="1"/><circle cx="10" cy="15" r="1.2"/><circle cx="16" cy="13" r="1"/><circle cx="15" cy="17" r=".8"/></svg>
+        </div>
+        <div class="cookie-banner__text">
+            Questo sito utilizza cookie tecnici necessari al funzionamento e, previo tuo consenso, cookie analitici per migliorare la tua esperienza.
+            <a href="#" onclick="event.preventDefault();openPolicyModal('cookie')">Cookie Policy</a> &middot;
+            <a href="#" onclick="event.preventDefault();openPolicyModal('privacy')">Privacy Policy</a>
+        </div>
+        <div class="cookie-banner__actions">
+            <button class="cookie-banner__btn cookie-banner__btn--accept" onclick="acceptCookies('all')">Accetta tutti</button>
+            <button class="cookie-banner__btn cookie-banner__btn--necessary" onclick="acceptCookies('necessary')">Solo necessari</button>
+        </div>
+        <button class="cookie-banner__close" onclick="acceptCookies('necessary')" aria-label="Chiudi">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+    </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div class="policy-modal" id="privacyModal">
+    <div class="policy-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+        <div class="policy-modal__header">
+            <h2 class="policy-modal__title" id="privacyModalTitle">Privacy Policy</h2>
+            <button class="policy-modal__close" onclick="closePolicyModal('privacy')" aria-label="Chiudi">
+                <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="policy-modal__body">
+            <h2>Titolare del trattamento</h2>
+            <p>Il titolare del trattamento dei dati personali &egrave; <strong>Sartoretto Verna S.R.L.</strong>, con sede in Via Trionfale 13592, 00135 Roma (RM), P.IVA 07291841000.<br>Email: info@sartorettoverna.it &mdash; Tel: +39 06 9558 1450.</p>
+
+            <h2>Tipologia di dati raccolti</h2>
+            <p>Questo sito raccoglie dati personali forniti volontariamente dall&rsquo;utente tramite il modulo di contatto (nome, cognome, citt&agrave;, email, telefono, messaggio) e dati di navigazione raccolti automaticamente (indirizzo IP, tipo di browser, pagine visitate, orario di accesso).</p>
+
+            <h2>Finalit&agrave; del trattamento</h2>
+            <p>I dati personali sono trattati per le seguenti finalit&agrave;:</p>
+            <ul>
+                <li>Rispondere alle richieste di contatto e fornire consulenza</li>
+                <li>Migliorare l&rsquo;esperienza di navigazione sul sito</li>
+                <li>Adempiere ad obblighi di legge</li>
+            </ul>
+
+            <h2>Base giuridica</h2>
+            <p>Il trattamento &egrave; basato sul consenso dell&rsquo;interessato (art. 6, par. 1, lett. a del GDPR) per i dati forniti tramite il modulo di contatto, e sul legittimo interesse del titolare (art. 6, par. 1, lett. f del GDPR) per i dati di navigazione.</p>
+
+            <h2>Conservazione dei dati</h2>
+            <p>I dati personali sono conservati per il tempo strettamente necessario alle finalit&agrave; per cui sono stati raccolti e comunque non oltre 24 mesi dall&rsquo;ultima interazione.</p>
+
+            <h2>Diritti dell&rsquo;interessato</h2>
+            <p>L&rsquo;utente ha diritto di accedere ai propri dati, richiederne la rettifica o la cancellazione, limitare il trattamento, opporsi al trattamento e richiedere la portabilit&agrave; dei dati. Per esercitare i propri diritti &egrave; possibile contattare il titolare all&rsquo;indirizzo email info@sartorettoverna.it.</p>
+
+            <h2>Cookie</h2>
+            <p>Per informazioni sull&rsquo;utilizzo dei cookie, si prega di consultare la nostra <a href="#" onclick="event.preventDefault();closePolicyModal('privacy');openPolicyModal('cookie')" style="color:var(--teal);text-decoration:underline">Cookie Policy</a>.</p>
+
+            <div class="policy-date">Ultimo aggiornamento: Giugno 2026</div>
+        </div>
+    </div>
+</div>
+
+<!-- COOKIE POLICY MODAL -->
+<div class="policy-modal" id="cookieModal">
+    <div class="policy-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+        <div class="policy-modal__header">
+            <h2 class="policy-modal__title" id="cookieModalTitle">Cookie Policy</h2>
+            <button class="policy-modal__close" onclick="closePolicyModal('cookie')" aria-label="Chiudi">
+                <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="policy-modal__body">
+            <h2>Cosa sono i cookie</h2>
+            <p>I cookie sono piccoli file di testo che i siti web visitati inviano al browser dell&rsquo;utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva.</p>
+
+            <h2>Cookie tecnici</h2>
+            <p>Questo sito utilizza cookie tecnici necessari al funzionamento del sito e alla fruizione dei contenuti. Questi cookie non richiedono il consenso dell&rsquo;utente in quanto indispensabili per il corretto funzionamento del servizio.</p>
+
+            <h2>Cookie analitici</h2>
+            <p>Il sito potrebbe utilizzare cookie analitici (es. Google Analytics) per raccogliere informazioni aggregate sull&rsquo;utilizzo del sito. Questi dati vengono utilizzati esclusivamente per migliorare il servizio offerto.</p>
+
+            <h2>Cookie di terze parti</h2>
+            <p>Il sito non utilizza cookie di profilazione di terze parti. Eventuali contenuti incorporati da piattaforme esterne (es. video) possono installare cookie propri secondo le rispettive policy.</p>
+
+            <h2>Come gestire i cookie</h2>
+            <p>L&rsquo;utente pu&ograve; gestire le preferenze sui cookie attraverso le impostazioni del proprio browser. La disattivazione dei cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+
+            <div class="policy-date">Ultimo aggiornamento: Giugno 2026</div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+    'use strict';
+
+    // COOKIE CONSENT
+    var banner=document.getElementById('cookieBanner');
+    function getConsent(){
+        try{return localStorage.getItem('cookie_consent')}catch(e){return null}
+    }
+    if(!getConsent()){
+        setTimeout(function(){banner.classList.add('show')},2400);
+    }
+    window.acceptCookies=function(level){
+        try{
+            localStorage.setItem('cookie_consent',level);
+            localStorage.setItem('cookie_consent_date',new Date().toISOString());
+        }catch(e){}
+        banner.classList.remove('show');
+    };
+
+    // POLICY MODALS
+    window.openPolicyModal=function(type){
+        var m=document.getElementById(type+'Modal');
+        if(!m)return;
+        m.classList.add('open');
+        document.body.style.overflow='hidden';
+    };
+    window.closePolicyModal=function(type){
+        var m=document.getElementById(type+'Modal');
+        if(!m)return;
+        m.classList.remove('open');
+        var projectModalOpen=document.getElementById('projectModal').classList.contains('open');
+        if(!projectModalOpen)document.body.style.overflow='';
+    };
+    document.querySelectorAll('.policy-modal').forEach(function(m){
+        m.addEventListener('click',function(e){
+            if(e.target===m){
+                var type=m.id.replace('Modal','');
+                closePolicyModal(type);
+            }
+        });
+    });
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){
+            ['privacy','cookie'].forEach(function(type){
+                var m=document.getElementById(type+'Modal');
+                if(m&&m.classList.contains('open'))closePolicyModal(type);
+            });
+        }
+    });
 })();
 </script>
 </body>
