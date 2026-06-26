@@ -1168,11 +1168,30 @@
         btn.style.opacity='.7';
         btn.style.pointerEvents='none';
 
-        fetch('https://hooks.zapier.com/hooks/catch/1977593/o7v4ls8/',{
-            method:'POST',
-            body:new URLSearchParams(fd)
-        }).then(function(res){
-            if(!res.ok)throw new Error('Webhook non disponibile');
+        var emailData={
+            nome:document.getElementById('nome').value,
+            cognome:document.getElementById('cognome').value,
+            citta:document.getElementById('citta').value,
+            email:document.getElementById('email').value,
+            telefono:document.getElementById('telefono').value,
+            messaggio:document.getElementById('messaggio').value,
+            _subject:'Nuovo contatto da arredostudiodentistico.it — '+document.getElementById('nome').value+' '+document.getElementById('cognome').value,
+            _template:'table'
+        };
+
+        Promise.all([
+            fetch('https://hooks.zapier.com/hooks/catch/1977593/o7v4ls8/',{
+                method:'POST',
+                body:new URLSearchParams(fd)
+            }),
+            fetch('https://formsubmit.co/ajax/damiano.consorti@sartorettoverna.it',{
+                method:'POST',
+                headers:{'Content-Type':'application/json','Accept':'application/json'},
+                body:JSON.stringify(emailData)
+            })
+        ]).then(function(results){
+            var zapierOk=results[0]&&results[0].ok;
+            if(!zapierOk)throw new Error('Webhook non disponibile');
             msg.innerHTML='<div class="form-msg__icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="white" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="form-msg__title">Richiesta inviata!</div><div class="form-msg__text">Grazie per averci contattato. Il nostro team ti ricontatterà entro 24 ore lavorative.</div>';
             msg.classList.add('show');
             form.reset();
