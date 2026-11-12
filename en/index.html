@@ -598,6 +598,14 @@
         .lang-switch:hover{color:var(--white);border-color:var(--teal);background:rgba(38,152,138,.15)}
         .lang-switch svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
 
+        /* ══════ SUBTITLE TOGGLE ══════ */
+        .video-section__wrap{position:relative}
+        .cc-toggle{position:absolute;top:14px;right:14px;z-index:5;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(8,12,12,.72);backdrop-filter:blur(8px);color:var(--white);font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+        .cc-toggle:hover{border-color:var(--teal)}
+        .cc-toggle[aria-pressed="true"]{background:var(--teal);border-color:var(--teal)}
+        .cc-toggle b{font-weight:700;border:1.5px solid currentColor;border-radius:4px;padding:1px 5px;font-size:10px;letter-spacing:1px}
+        video::cue{font-family:Helvetica,Arial,sans-serif;font-size:100%;background:rgba(0,0,0,.75);color:#fff}
+
         /* ══════ GRAIN ══════ */
         .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
     </style>
@@ -838,6 +846,7 @@
             </div>
         </div>
         <div class="video-section__wrap reveal d4">
+            <button type="button" class="cc-toggle" id="ccToggle" aria-pressed="true" aria-label="Toggle English subtitles"><b>CC</b><span>Subtitles on</span></button>
             <video id="videoMari" controls preload="metadata" playsinline webkit-playsinline controlslist="nofullscreen nodownload noremoteplayback" disablepictureinpicture>
                 <source src="https://sv-it.b-cdn.net/Emozione%2C%20storytelling%20ed%20interazione%20per%20il%20restyling%20dello%20studio%20dentistico%20Mari%20a%20Spoleto.mp4" type="video/mp4">
                 <track kind="subtitles" srclang="en" label="English" src="/en/mari-en.vtt" default>
@@ -1224,6 +1233,22 @@
             setTimeout(function(){msg.classList.remove('show');msg.style.borderColor='';msg.style.background=''},8000);
         });
     });
+
+
+    // SUBTITLES TOGGLE
+    (function(){
+        var v=document.getElementById('videoMari'),b=document.getElementById('ccToggle');
+        if(!v||!b)return;
+        function track(){return v.textTracks&&v.textTracks[0]}
+        function set(on){
+            var t=track();if(t)t.mode=on?'showing':'hidden';
+            b.setAttribute('aria-pressed',on?'true':'false');
+            b.querySelector('span').textContent=on?'Subtitles on':'Subtitles off';
+        }
+        set(true);
+        v.addEventListener('loadedmetadata',function(){set(b.getAttribute('aria-pressed')==='true')});
+        b.addEventListener('click',function(){set(b.getAttribute('aria-pressed')!=='true')});
+    })();
 
     // CURSOR GLOW
     var glow=document.getElementById('cursorGlow');
