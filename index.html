@@ -16,13 +16,16 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:site_name" content="Arredo Studio Dentistico — Sartoretto Verna">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Arredo Studio Dentistico su Misura — Sartoretto Verna">
     <meta name="twitter:description" content="Progettazione, arredamento e brand identity per studi dentistici. 60 anni di esperienza, 2.500 progetti, 48 paesi.">
     <meta name="twitter:image" content="https://www.arredostudiodentistico.it/Studio%20Mari/005.webp">
     <link rel="canonical" href="https://www.arredostudiodentistico.it">
-    <link rel="alternate" hreflang="it" href="https://www.arredostudiodentistico.it">
+    <link rel="alternate" hreflang="it" href="https://www.arredostudiodentistico.it/">
+    <link rel="alternate" hreflang="en" href="https://www.arredostudiodentistico.it/en/">
+    <link rel="alternate" hreflang="x-default" href="https://www.arredostudiodentistico.it/">
     <link rel="icon" href="favicon-150x150.png" sizes="32x32">
     <link rel="icon" href="favicon-300x300.png" sizes="192x192">
     <link rel="apple-touch-icon" href="favicon-300x300.png">
@@ -587,6 +590,12 @@
         .field--privacy label a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;transition:color .3s}
         .field--privacy label a:hover{color:var(--teal-hover)}
 
+
+        /* ══════ LANGUAGE SWITCH ══════ */
+        .lang-switch{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);border:1px solid rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;text-decoration:none;transition:all .3s}
+        .lang-switch:hover{color:var(--white);border-color:var(--teal);background:rgba(38,152,138,.15)}
+        .lang-switch svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
+
         /* ══════ GRAIN ══════ */
         .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
     </style>
@@ -618,6 +627,7 @@
         <a href="#contatti">Contatti</a>
     </nav>
     <div class="header__right">
+        <a href="/en/" class="lang-switch" hreflang="en" lang="en" aria-label="English version"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>EN</a>
         <a href="tel:+390695581450" class="header__tel">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>06 9558 1450</span>
@@ -633,6 +643,7 @@
     <a href="#progetti">Progetti</a>
     <a href="#processo">Processo</a>
     <a href="#contatti">Contatti</a>
+    <a href="/en/" hreflang="en" lang="en">English version</a>
     <a href="tel:+390695581450" style="color:var(--teal)">06 9558 1450</a>
 </nav>
 
