@@ -185,19 +185,22 @@
         .header::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:rgba(255,255,255,.06);transition:opacity .4s}
         .header.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6)}
         .header.scrolled::after{opacity:0}
+        .header::before{content:'';position:absolute;left:0;right:0;top:0;height:160%;background:linear-gradient(to bottom,rgba(5,5,5,.88) 0%,rgba(5,5,5,.6) 50%,rgba(5,5,5,0) 100%);pointer-events:none;z-index:-1;transition:opacity .4s}
+        .header.scrolled::before{opacity:0}
+        .nav a,.header__tel,.lang-switch{text-shadow:0 1px 10px rgba(0,0,0,.7)}
         .logo{display:flex;align-items:center;gap:14px}
         .logo img{height:44px;width:auto;filter:brightness(1.1)}
         .logo__divider{width:1px;height:28px;background:rgba(255,255,255,.15)}
         .logo__text{font-family:var(--font-display);font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--teal);font-weight:400;line-height:1.5}
 
         .nav{display:flex;align-items:center;gap:36px}
-        .nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);transition:color .3s;position:relative}
+        .nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-100);transition:color .3s;position:relative}
         .nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--teal);transition:width .4s var(--ease)}
         .nav a:hover{color:var(--white)}
         .nav a:hover::after{width:100%}
 
         .header__right{display:flex;align-items:center;gap:20px}
-        .header__tel{font-family:var(--font-mono);font-size:11px;color:var(--gray-300);display:flex;align-items:center;gap:8px;transition:color .3s}
+        .header__tel{font-family:var(--font-mono);font-size:11px;color:var(--gray-100);display:flex;align-items:center;gap:8px;transition:color .3s}
         .header__tel:hover{color:var(--teal)}
         .header__tel svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
         .btn{font-family:var(--font-display);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--white);cursor:pointer;position:relative;overflow:hidden;transition:all .4s var(--ease);display:inline-flex;align-items:center;gap:10px}
@@ -592,7 +595,7 @@
 
 
         /* ══════ LANGUAGE SWITCH ══════ */
-        .lang-switch{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);border:1px solid rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;text-decoration:none;transition:all .3s}
+        .lang-switch{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.4);padding:8px 12px;border-radius:999px;text-decoration:none;transition:all .3s}
         .lang-switch:hover{color:var(--white);border-color:var(--teal);background:rgba(38,152,138,.15)}
         .lang-switch svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
 

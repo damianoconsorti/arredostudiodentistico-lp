@@ -188,19 +188,22 @@
         .header::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:rgba(255,255,255,.06);transition:opacity .4s}
         .header.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6)}
         .header.scrolled::after{opacity:0}
+        .header::before{content:'';position:absolute;left:0;right:0;top:0;height:160%;background:linear-gradient(to bottom,rgba(5,5,5,.88) 0%,rgba(5,5,5,.6) 50%,rgba(5,5,5,0) 100%);pointer-events:none;z-index:-1;transition:opacity .4s}
+        .header.scrolled::before{opacity:0}
+        .nav a,.header__tel,.lang-switch{text-shadow:0 1px 10px rgba(0,0,0,.7)}
         .logo{display:flex;align-items:center;gap:14px}
         .logo img{height:44px;width:auto;filter:brightness(1.1)}
         .logo__divider{width:1px;height:28px;background:rgba(255,255,255,.15)}
         .logo__text{font-family:var(--font-display);font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--teal);font-weight:400;line-height:1.5}
 
         .nav{display:flex;align-items:center;gap:36px}
-        .nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);transition:color .3s;position:relative}
+        .nav a{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-100);transition:color .3s;position:relative}
         .nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--teal);transition:width .4s var(--ease)}
         .nav a:hover{color:var(--white)}
         .nav a:hover::after{width:100%}
 
         .header__right{display:flex;align-items:center;gap:20px}
-        .header__tel{font-family:var(--font-mono);font-size:11px;color:var(--gray-300);display:flex;align-items:center;gap:8px;transition:color .3s}
+        .header__tel{font-family:var(--font-mono);font-size:11px;color:var(--gray-100);display:flex;align-items:center;gap:8px;transition:color .3s}
         .header__tel:hover{color:var(--teal)}
         .header__tel svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
         .btn{font-family:var(--font-display);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--white);cursor:pointer;position:relative;overflow:hidden;transition:all .4s var(--ease);display:inline-flex;align-items:center;gap:10px}
@@ -594,7 +597,7 @@
         .field--privacy label a:hover{color:var(--teal-hover)}
 
         /* ══════ LANGUAGE SWITCH ══════ */
-        .lang-switch{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);border:1px solid rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;text-decoration:none;transition:all .3s}
+        .lang-switch{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.4);padding:8px 12px;border-radius:999px;text-decoration:none;transition:all .3s}
         .lang-switch:hover{color:var(--white);border-color:var(--teal);background:rgba(38,152,138,.15)}
         .lang-switch svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
 
@@ -615,7 +618,11 @@
         .vc__big:hover{background:var(--teal)}
         .vc__big svg{width:24px;height:24px;fill:currentColor;margin-left:3px}
         .vc__big.hide{opacity:0;pointer-events:none}
-        video::cue{font-family:Helvetica,Arial,sans-serif;background:rgba(0,0,0,.78);color:#fff}
+        video::cue{opacity:0}
+        .vc__sub{position:absolute;left:22px;right:22px;bottom:62px;z-index:3;text-align:center;pointer-events:none;display:none}
+        .vc__sub.on{display:block}
+        .vc__sub span{display:inline;padding:2px 7px;background:rgba(0,0,0,.78);color:#fff;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.75;-webkit-box-decoration-break:clone;box-decoration-break:clone;overflow-wrap:break-word}
+        .vc__sub:empty{display:none!important}
 
         /* ══════ GRAIN ══════ */
         .grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
@@ -861,6 +868,7 @@
                 <source src="https://sv-it.b-cdn.net/Emozione%2C%20storytelling%20ed%20interazione%20per%20il%20restyling%20dello%20studio%20dentistico%20Mari%20a%20Spoleto.mp4" type="video/mp4">
                 <track kind="subtitles" srclang="en" label="English" src="/en/mari-en.vtt" default>
             </video>
+            <div class="vc__sub" id="vcSub" aria-live="off"></div>
             <button type="button" class="vc__big" id="vcBig" aria-label="Play video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vc" id="vc">
                 <button type="button" class="vc__btn" id="vcPlay" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
@@ -1272,7 +1280,9 @@
         v.addEventListener('timeupdate',upd);v.addEventListener('loadedmetadata',upd);
         bar.addEventListener('input',function(){if(v.duration)v.currentTime=bar.value/1000*v.duration});
         mute.addEventListener('click',function(){v.muted=!v.muted;icon(mute,v.muted?MUTED:SPK);mute.setAttribute('aria-label',v.muted?'Unmute':'Mute')});
-        function setCC(on){var t=v.textTracks&&v.textTracks[0];if(t)t.mode=on?'showing':'hidden';cc.setAttribute('aria-pressed',on?'true':'false')}
+        var sub=document.getElementById('vcSub');
+        function showCue(){var t=v.textTracks&&v.textTracks[0];sub.textContent='';if(!t||!t.activeCues||!t.activeCues.length)return;var span=document.createElement('span');span.textContent=Array.prototype.map.call(t.activeCues,function(c){return c.text}).join(' ');sub.appendChild(span)}
+        function setCC(on){var t=v.textTracks&&v.textTracks[0];if(t){t.mode='hidden';if(!t._bound){t._bound=true;t.addEventListener('cuechange',showCue)}}sub.classList.toggle('on',on);cc.setAttribute('aria-pressed',on?'true':'false');if(on)showCue()}
         setCC(true);
         v.addEventListener('loadedmetadata',function(){setCC(cc.getAttribute('aria-pressed')==='true')});
         cc.addEventListener('click',function(){setCC(cc.getAttribute('aria-pressed')!=='true')});
