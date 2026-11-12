@@ -1014,7 +1014,7 @@
     var cObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
         var el=e.target,target=+el.dataset.target,dur=2200,start=null;
         function ease(t){return 1-Math.pow(1-t,4)}
-        function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=Math.floor(ease(p)*target).toLocaleString('it-IT');if(p<1)requestAnimationFrame(step);else el.textContent=target.toLocaleString('it-IT')}
+        function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=Math.floor(ease(p)*target).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');if(p<1)requestAnimationFrame(step);else el.textContent=target.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
         requestAnimationFrame(step);cObs.unobserve(el);
     }})},{threshold:.5});
     document.querySelectorAll('.ct').forEach(function(c){cObs.observe(c)});
