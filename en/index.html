@@ -260,7 +260,7 @@
         /* ══════ MARQUEE ══════ */
         .marquee{overflow:hidden;padding:26px 0;border-top:1px solid rgba(38,152,138,.25);border-bottom:1px solid rgba(38,152,138,.25);background:linear-gradient(90deg,#0b1413,#0f1c1a,#0b1413)}
         .marquee__track{display:flex;animation:scroll-marquee 70s linear infinite;width:max-content}
-        .marquee__item{font-family:var(--font-display);font-size:clamp(18px,2vw,24px);font-weight:400;letter-spacing:5px;text-transform:uppercase;color:var(--gray-100);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:40px}
+        .marquee__item{font-family:var(--font-display);font-size:20px;font-weight:400;letter-spacing:5px;text-transform:uppercase;color:var(--gray-100);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:40px}
         .marquee__item::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);opacity:1}
         @keyframes scroll-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -833,13 +833,14 @@
             <div class="video-section__meta reveal d3">
                 <div class="video-section__caption">
                     <div class="video-section__caption-name">Dr. Mari</div>
-                    <div class="video-section__caption-role">Mari Dental Practice &mdash; Spoleto &middot; Video in Italian</div>
+                    <div class="video-section__caption-role">Mari Dental Practice &mdash; Spoleto &middot; Italian audio, English subtitles</div>
                 </div>
             </div>
         </div>
         <div class="video-section__wrap reveal d4">
             <video id="videoMari" controls preload="metadata" playsinline webkit-playsinline controlslist="nofullscreen nodownload noremoteplayback" disablepictureinpicture>
                 <source src="https://sv-it.b-cdn.net/Emozione%2C%20storytelling%20ed%20interazione%20per%20il%20restyling%20dello%20studio%20dentistico%20Mari%20a%20Spoleto.mp4" type="video/mp4">
+                <track kind="subtitles" srclang="en" label="English" src="/en/mari-en.vtt" default>
             </video>
         </div>
     </div>
